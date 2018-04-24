@@ -6,7 +6,7 @@ int main()
 {
 	NewtVirtualMachine* vm;
 	NewtValue str[3];
-	char* tmp;
+	const char* tmp;
 
 	if (newtCreateVirtualMachine(&vm) != NEWT_OK)
 	{
