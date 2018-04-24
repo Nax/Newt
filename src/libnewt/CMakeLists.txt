@@ -1,5 +1,7 @@
 file(GLOB_RECURSE SOURCES "*.c")
 
+configure_file("${CMAKE_SOURCE_DIR}/include/newt/config.h.in" "${CMAKE_BINARY_DIR}/include/newt/config.h")
+
 add_library(libnewt SHARED ${SOURCES})
 add_library(libnewt-static STATIC ${SOURCES})
 
@@ -11,7 +13,7 @@ else()
 	set_target_properties(libnewt-static PROPERTIES OUTPUT_NAME "newt")
 endif()
 
-target_include_directories(libnewt PUBLIC "${CMAKE_SOURCE_DIR}/include")
-target_include_directories(libnewt-static PUBLIC "${CMAKE_SOURCE_DIR}/include")
+target_include_directories(libnewt PUBLIC "${CMAKE_SOURCE_DIR}/include" "${CMAKE_BINARY_DIR}/include")
+target_include_directories(libnewt-static PUBLIC "${CMAKE_SOURCE_DIR}/include" "${CMAKE_BINARY_DIR}/include")
 target_compile_definitions(libnewt PRIVATE "-DNEWT_EXPORT_DLL=1")
 target_compile_definitions(libnewt-static PUBLIC "-DNEWT_STATIC=1")
