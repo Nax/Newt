@@ -10,6 +10,8 @@
 
 #define NEWTP_CUSTOM_TYPE_INDEX(type)	(type | (~NEWTP_CUSTOM_TYPE_MASK))
 
+#define NEWTP_ARRAY_DEFAULT_CAPACITY    8
+
 struct NewtpFreeList_ {
 	uint32_t*	data;
 	uint32_t	size;

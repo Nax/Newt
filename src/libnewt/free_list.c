@@ -3,11 +3,9 @@
 
 NewtResult newtpInitFreeList(NewtpFreeList* freeList)
 {
-	static const int defaultCapacity = 8;
-
-	if (!(freeList->data = malloc(sizeof(uint32_t) * defaultCapacity)))
+	if (!(freeList->data = malloc(sizeof(uint32_t) * NEWTP_ARRAY_DEFAULT_CAPACITY)))
 		return NEWT_ERROR_OUT_OF_MEMORY;
-	freeList->capacity = defaultCapacity;
+	freeList->capacity = NEWTP_ARRAY_DEFAULT_CAPACITY;
 	freeList->size = 0;
 	return NEWT_OK;
 }

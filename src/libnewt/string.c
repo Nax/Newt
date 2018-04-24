@@ -116,16 +116,14 @@ NEWT_EXPORTED NewtResult newtGetString(NewtVirtualMachine* vm, NewtValue value, 
 
 NewtResult newtpInitVirtualMachineStrings(NewtpStrings* strings)
 {
-	static const uint32_t defaultCapacity = 8;
-
-	if (!(strings->data = malloc(sizeof(char*) * defaultCapacity)))
+	if (!(strings->data = malloc(sizeof(char*) * NEWTP_ARRAY_DEFAULT_CAPACITY)))
 		goto oom_data;
-	if (!(strings->refcount = malloc(sizeof(uint8_t) * defaultCapacity)))
+	if (!(strings->refcount = malloc(sizeof(uint8_t) * NEWTP_ARRAY_DEFAULT_CAPACITY)))
 		goto oom_refcount;
 	if (newtpInitFreeList(&strings->freeList) != NEWT_OK)
 		goto oom_free_list;
 
-	strings->capacity = defaultCapacity;
+	strings->capacity = NEWTP_ARRAY_DEFAULT_CAPACITY;
 	strings->size = 1;
 	strings->data[0] = NULL;
 	strings->refcount[0] = 0;
